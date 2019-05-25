@@ -1,11 +1,11 @@
 package app.controller;
 
 import app.StudentCalc;
+import app.helper.Loan;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
@@ -52,13 +52,16 @@ public class LoanCalcViewController implements Initializable   {
 	 */
 	@FXML
 	private void btnCalcLoan(ActionEvent event) {
-
-		System.out.println("Amount: " + LoanAmount.getText());
 		double dLoanAmount = Double.parseDouble(LoanAmount.getText());
-		System.out.println("Amount: " + dLoanAmount);	
+		double dInterestRate = Double.parseDouble(InterestRate.getText());
+		double iTerm = Double.parseDouble(NbrOfYears.getText());
+		double dExtraPayment = Double.parseDouble(AdditionalPayment.getText());
 		
-		LocalDate localDate = PaymentStartDate.getValue();
-	 
-		System.out.println(localDate);
+		Loan iLoan = new Loan(dLoanAmount, dInterestRate, iTerm, dExtraPayment);
+		iLoan.calcLoan();
+		
+		lblTotalPayemnts.setText(Double.toString(iLoan.calcTotalPayments()));
+		
+		lblTotalInterest.setText(Double.toString(iLoan.calcTotalInterest()));
 	}
 }

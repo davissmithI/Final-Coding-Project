@@ -18,13 +18,7 @@ public class TestPMT {
 		
 		double PMTExpected = 1162.95;
 		
-		assertEquals(PMTExpected, PMT, 0.01);
-		
-		
-		
+		assertEquals(PMTExpected, PMT, 0.01);	
 	}
 
 }
-
- 
-
